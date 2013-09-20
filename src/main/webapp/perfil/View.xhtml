@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPerfilTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPerfilLabel_codigo}"/>
+                    <h:outputText value="#{perfilController.selected.codigo}" title="#{bundle.ViewPerfilTitle_codigo}"/>
+                    <h:outputText value="#{bundle.ViewPerfilLabel_descricao}"/>
+                    <h:outputText value="#{perfilController.selected.descricao}" title="#{bundle.ViewPerfilTitle_descricao}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{perfilController.destroyAndView}" value="#{bundle.ViewPerfilDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPerfilEditLink}"/>
+                <br />
+                <h:commandLink action="#{perfilController.prepareCreate}" value="#{bundle.ViewPerfilCreateLink}" />
+                <br />
+                <h:commandLink action="#{perfilController.prepareList}" value="#{bundle.ViewPerfilShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPerfilIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

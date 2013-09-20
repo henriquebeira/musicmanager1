@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditFaixaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditFaixaLabel_codigo}" for="codigo" />
+                    <h:inputText id="codigo" value="#{faixaController.selected.codigo}" title="#{bundle.EditFaixaTitle_codigo}" required="true" requiredMessage="#{bundle.EditFaixaRequiredMessage_codigo}"/>
+                    <h:outputLabel value="#{bundle.EditFaixaLabel_numero}" for="numero" />
+                    <h:inputText id="numero" value="#{faixaController.selected.numero}" title="#{bundle.EditFaixaTitle_numero}" />
+                    <h:outputLabel value="#{bundle.EditFaixaLabel_titulo}" for="titulo" />
+                    <h:inputText id="titulo" value="#{faixaController.selected.titulo}" title="#{bundle.EditFaixaTitle_titulo}" required="true" requiredMessage="#{bundle.EditFaixaRequiredMessage_titulo}"/>
+                    <h:outputLabel value="#{bundle.EditFaixaLabel_duracao}" for="duracao" />
+                    <h:inputText id="duracao" value="#{faixaController.selected.duracao}" title="#{bundle.EditFaixaTitle_duracao}" required="true" requiredMessage="#{bundle.EditFaixaRequiredMessage_duracao}"/>
+                    <h:outputLabel value="#{bundle.EditFaixaLabel_artista}" for="artista" />
+                    <h:selectOneMenu id="artista" value="#{faixaController.selected.artista}" title="#{bundle.EditFaixaTitle_artista}" required="true" requiredMessage="#{bundle.EditFaixaRequiredMessage_artista}">
+                        <f:selectItems value="#{artistaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditFaixaLabel_album}" for="album" />
+                    <h:selectOneMenu id="album" value="#{faixaController.selected.album}" title="#{bundle.EditFaixaTitle_album}" >
+                        <f:selectItems value="#{albumController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{faixaController.update}" value="#{bundle.EditFaixaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditFaixaViewLink}"/>
+                <br />
+                <h:commandLink action="#{faixaController.prepareList}" value="#{bundle.EditFaixaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditFaixaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
